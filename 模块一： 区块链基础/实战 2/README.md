@@ -20,3 +20,6 @@ block = {
 'previous_hash': "xxxx"
 }
 请提交完成的 github 代码仓库链接， 在 Readme 中包含运行说明及运行日志或截图。
+
+参考
+[用Python从零开始创建区块链](https://learnblockchain.cn/2017/10/27/build_blockchain_by_python/)
