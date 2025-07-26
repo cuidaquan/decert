@@ -1,2 +1,4 @@
 模块一： 区块链基础/实战 1/题目#2/private_key.pem
 模块一： 区块链基础/实战 1/题目#2/public_key.pem
+node_modules/*
+package-lock.json
