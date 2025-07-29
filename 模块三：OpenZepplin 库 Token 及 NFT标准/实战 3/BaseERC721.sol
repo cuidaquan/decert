@@ -1,25 +1,3 @@
-编写 ERC721 NFT 合约
-
-题目#1
-编写 ERC721 NFT 合约
-  
-介绍
-ERC721 标准代表了非同质化代币（NFT），它为独一无二的资产提供链上表示。从数字艺术品到虚拟产权，NFT的概念正迅速被世界认可。了解并能够实现 ERC721 标准对区块链开发者至关重要。通过这个挑战，你不仅可以熟悉 Solidity 编程，而且可以了解 ERC721 合约的工作原理。
-
-目标
-你的任务是创建一个遵循 ERC721 标准的智能合约，该合约能够用于在以太坊区块链上铸造与交易 NFT。
-
-相关资源
-为了帮助完成这项挑战，以下资源可能会有用：
-• [EIP-721标准](https://eips.ethereum.org/EIPS/eip-721)
-• [OpenZeppelin ERC721智能合约库](https://docs.openzeppelin.com/contracts/5.x/erc721)
-
-注意
-在编写合约时，需要遵循 ERC721 标准，此外也需要考虑到安全性，确保转账和授权功能在任何时候都能正常运行无误。
-代码模板中已包含基础框架，只需要在标记为 /**code*/ 的地方编写你的代码。不要去修改已有内容！
-提交前需确保通过所有相关的测试用例
-
-
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -88,11 +66,9 @@ contract BaseERC721 {
         string memory symbol_,
         string memory baseURI_
     ) {
-        /**code*/
         _name = name_;
         _symbol = symbol_;
         _baseURI = baseURI_;
-
     }
 
     /**
@@ -102,26 +78,21 @@ contract BaseERC721 {
         return
             interfaceId == 0x01ffc9a7 || // ERC165 Interface ID for ERC165
             interfaceId == 0x80ac58cd || // ERC165 Interface ID for ERC721
-            interfaceId == 0x5b5e139f;   // ERC165 Interface ID for ERC721Metadata
+            interfaceId == 0x5b5e139f; // ERC165 Interface ID for ERC721Metadata
     }
-    
+
     /**
      * @dev See {IERC721Metadata-name}.
      */
     function name() public view returns (string memory) {
-        /**code*/
         return _name;
-
-
     }
 
     /**
      * @dev See {IERC721Metadata-symbol}.
      */
     function symbol() public view returns (string memory) {
-        /**code*/
         return _symbol;
-        
     }
 
     /**
@@ -129,13 +100,11 @@ contract BaseERC721 {
      */
     function tokenURI(uint256 tokenId) public view returns (string memory) {
         require(
-            /**code*/
             _exists(tokenId),
             "ERC721Metadata: URI query for nonexistent token"
         );
 
         // should return baseURI
-        /**code*/
         return string(abi.encodePacked(_baseURI, tokenId.toString()));
     }
 
@@ -151,10 +120,9 @@ contract BaseERC721 {
      * Emits a {Transfer} event.
      */
     function mint(address to, uint256 tokenId) public {
-        require(/**code*/ to != address(0), "ERC721: mint to the zero address");
-        require(/**code*/ !_exists(tokenId), "ERC721: token already minted");
+        require(to != address(0), "ERC721: mint to the zero address");
+        require(!_exists(tokenId), "ERC721: token already minted");
 
-        /**code*/
         _owners[tokenId] = to;
         _balances[to] += 1;
 
@@ -165,7 +133,6 @@ contract BaseERC721 {
      * @dev See {IERC721-balanceOf}.
      */
     function balanceOf(address owner) public view returns (uint256) {
-        /**code*/
         return _balances[owner];
     }
 
@@ -173,7 +140,6 @@ contract BaseERC721 {
      * @dev See {IERC721-ownerOf}.
      */
     function ownerOf(uint256 tokenId) public view returns (address) {
-        /**code*/
         return _owners[tokenId];
     }
 
@@ -182,14 +148,14 @@ contract BaseERC721 {
      */
     function approve(address to, uint256 tokenId) public {
         address owner = ownerOf(tokenId);
-        require(/**code*/ to != owner, "ERC721: approval to current owner");
+        require(to != owner, "ERC721: approval to current owner");
 
         require(
-            /**code*/ msg.sender == owner || isApprovedForAll(owner, msg.sender),
+            msg.sender == owner || isApprovedForAll(owner, msg.sender),
             "ERC721: approve caller is not owner nor approved for all"
         );
 
-       _approve(to, tokenId);
+        _approve(to, tokenId);
     }
 
     /**
@@ -197,11 +163,10 @@ contract BaseERC721 {
      */
     function getApproved(uint256 tokenId) public view returns (address) {
         require(
-            /**code*/ _exists(tokenId),
+            _exists(tokenId),
             "ERC721: approved query for nonexistent token"
         );
 
-        /**code*/
         return _tokenApprovals[tokenId];
     }
 
@@ -210,9 +175,8 @@ contract BaseERC721 {
      */
     function setApprovalForAll(address operator, bool approved) public {
         address sender = msg.sender;
-        require(/**code*/ operator != sender, "ERC721: approve to caller");
+        require(operator != sender, "ERC721: approve to caller");
 
-        /**code*/
         _operatorApprovals[sender][operator] = approved;
 
         emit ApprovalForAll(sender, operator, approved);
@@ -225,7 +189,6 @@ contract BaseERC721 {
         address owner,
         address operator
     ) public view returns (bool) {
-        /**code*/
         return _operatorApprovals[owner][operator];
     }
 
@@ -308,7 +271,6 @@ contract BaseERC721 {
      * and stop existing when they are burned (`_burn`).
      */
     function _exists(uint256 tokenId) internal view returns (bool) {
-        /**code*/
         return _owners[tokenId] != address(0);
     }
 
@@ -324,11 +286,10 @@ contract BaseERC721 {
         uint256 tokenId
     ) internal view returns (bool) {
         require(
-            /**code*/ _exists(tokenId),
+            _exists(tokenId),
             "ERC721: operator query for nonexistent token"
         );
 
-        /**code*/
         return (spender == ownerOf(tokenId) ||
             getApproved(tokenId) == spender ||
             isApprovedForAll(ownerOf(tokenId), spender));
@@ -347,13 +308,12 @@ contract BaseERC721 {
      */
     function _transfer(address from, address to, uint256 tokenId) internal {
         require(
-           /**code*/ ownerOf(tokenId) == from,
+            ownerOf(tokenId) == from,
             "ERC721: transfer from incorrect owner"
         );
 
-        require(/**code*/ to != address(0), "ERC721: transfer to the zero address");
+        require(to != address(0), "ERC721: transfer to the zero address");
 
-        /**code*/
         // Clear approvals from the previous owner
         _approve(address(0), tokenId);
 
@@ -370,10 +330,6 @@ contract BaseERC721 {
      * Emits a {Approval} event.
      */
     function _approve(address to, uint256 tokenId) internal virtual {
-        /**code*/
-        // 判断有没有权限
-        require(_isApprovedOrOwner(msg.sender, tokenId), "ERC721: approve caller is not owner nor approved for all");
-
         _tokenApprovals[tokenId] = to;
 
         emit Approval(ownerOf(tokenId), to, tokenId);
