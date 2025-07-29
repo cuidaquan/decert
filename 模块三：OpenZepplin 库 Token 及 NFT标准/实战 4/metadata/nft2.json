@@ -1,0 +1,37 @@
+{
+  "name": "Cyber Phoenix #2",
+  "description": "A digital phoenix that rises from the ashes of the old internet, symbolizing rebirth and transformation in the Web3 era. Its cybernetic enhancements make it a guardian of the metaverse.",
+  "image": "ipfs://bafybeifb5ldzzsoswthwxucv7ur6lo4tcid42gnjx7jfbkh37txctsegk4",
+  "external_url": "https://blush-tough-owl-278.mypinata.cloud/ipfs/bafybeifb5ldzzsoswthwxucv7ur6lo4tcid42gnjx7jfbkh37txctsegk4",
+  "attributes": [
+    {
+      "trait_type": "Element",
+      "value": "Electric"
+    },
+    {
+      "trait_type": "Rarity",
+      "value": "Epic"
+    },
+    {
+      "trait_type": "Power Level",
+      "value": 88
+    },
+    {
+      "trait_type": "Wings",
+      "value": "Neon Blue"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Laser Green"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Cyberpunk City"
+    }
+  ],
+  "properties": {
+    "category": "Phoenix",
+    "creator": "MyNFT Collection",
+    "generation": 1
+  }
+}

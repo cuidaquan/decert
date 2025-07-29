@@ -1,0 +1,37 @@
+{
+  "name": "Crypto Dragon #1",
+  "description": "A majestic fire-breathing dragon from the mystical realm of blockchain. This legendary creature possesses the power to guard digital treasures and bring fortune to its owner.",
+  "image": "ipfs://bafybeigyt64vmq4bsswnwk3lge3umm6b23ktjn67pvtwnrbn4dhbgbhtqu",
+  "external_url": "https://blush-tough-owl-278.mypinata.cloud/ipfs/bafybeigyt64vmq4bsswnwk3lge3umm6b23ktjn67pvtwnrbn4dhbgbhtqu",
+  "attributes": [
+    {
+      "trait_type": "Element",
+      "value": "Fire"
+    },
+    {
+      "trait_type": "Rarity",
+      "value": "Legendary"
+    },
+    {
+      "trait_type": "Power Level",
+      "value": 95
+    },
+    {
+      "trait_type": "Wings",
+      "value": "Golden"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Ruby Red"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Volcanic"
+    }
+  ],
+  "properties": {
+    "category": "Dragon",
+    "creator": "MyNFT Collection",
+    "generation": 1
+  }
+}

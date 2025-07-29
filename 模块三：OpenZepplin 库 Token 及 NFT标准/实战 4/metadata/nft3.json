@@ -1,0 +1,37 @@
+{
+  "name": "Mystic Unicorn #3",
+  "description": "A rare unicorn from the enchanted forests of the blockchain realm. Its horn can pierce through any smart contract bug and its magic brings good luck to DeFi adventures.",
+  "image": "ipfs://bafybeib34tgcwhzvtdrvviqmskg3ywbpkzcdkhglevpimdgkrondnfpsma",
+  "external_url": "https://blush-tough-owl-278.mypinata.cloud/ipfs/bafybeib34tgcwhzvtdrvviqmskg3ywbpkzcdkhglevpimdgkrondnfpsma",
+  "attributes": [
+    {
+      "trait_type": "Element",
+      "value": "Magic"
+    },
+    {
+      "trait_type": "Rarity",
+      "value": "Rare"
+    },
+    {
+      "trait_type": "Power Level",
+      "value": 75
+    },
+    {
+      "trait_type": "Horn",
+      "value": "Crystal"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Sapphire Blue"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Enchanted Forest"
+    }
+  ],
+  "properties": {
+    "category": "Unicorn",
+    "creator": "MyNFT Collection",
+    "generation": 1
+  }
+}
