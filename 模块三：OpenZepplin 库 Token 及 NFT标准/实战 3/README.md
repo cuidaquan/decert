@@ -136,7 +136,7 @@ contract BaseERC721 {
 
         // should return baseURI
         /**code*/
-        return string(abi.encodePacked(_baseURI, tokenId.toString()));
+        return string.concat(_baseURI, tokenId.toString());
     }
 
     /**
