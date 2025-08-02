@@ -1,11 +1,5 @@
 # NFT市场部署指南
 
-## 修复的问题
-
-已修复以下OpenZeppelin兼容性问题：
-1. 移除了已弃用的`Counters`库，使用简单的`uint256`计数器
-2. 修复了`Ownable`构造函数，添加了必需的`msg.sender`参数
-
 ## 部署步骤
 
 ### 1. 环境准备
@@ -25,12 +19,18 @@ constructor(
     uint256 initialSupply      // 1000000 (将自动乘以10^18)
 )
 ```
+参数：MyToken,MTK,1000000
+交易Hash：0x1d2a29bc7846d62170f53bf76bb13307e9b4a90c317c4aec33e90da36eb5c7c0
+合约地址：0xbf2a074c014d847ae838191b3e957826851c74ec
 
 #### 步骤2: 部署MyNFT合约
 ```solidity
 // 无需构造参数
 constructor() // 自动设置名称为"MyNFT"，符号为"MNFT"
 ```
+参数：无
+交易Hash：0xabc38a149beb2ca2d93b94b8db6f55bc7cfc8b630431fd7e56050047382c510e
+合约地址：0x08dcaa6de0ca584b8c5d810b027afe23d31c4af1
 
 #### 步骤3: 部署NFTMarket合约
 ```solidity
@@ -40,83 +40,86 @@ constructor(
     address _nftContract    // MyNFT合约地址
 )
 ```
-
-#### 步骤4: (可选) 部署SimpleDemo合约
-```solidity
-// 无需构造参数，部署后调用setContractAddresses设置合约地址
-constructor()
-```
+参数：0xbf2a074c014d847ae838191b3e957826851c74ec,0x08dcaa6de0ca584b8c5d810b027afe23d31c4af1
+交易Hash：0x85ede19fe3a03aa72912528b7f8af867c1a44ac3d8e928faecc1cc020d3a491f
+合约地址：0x9d206682e9837b02479a5010ed312045eaeacdb2
 
 ### 3. 初始化设置
 
-#### 3.1 设置SimpleDemo合约地址（如果使用）
+#### 3.1 铸造测试NFT
 ```solidity
-// 调用SimpleDemo合约的setContractAddresses函数
-demo.setContractAddresses(nftAddress, tokenAddress, marketAddress);
-```
-
-#### 3.2 铸造测试NFT
-```solidity
-// 方式1: 直接调用MyNFT合约
+// 调用MyNFT合约
 nft.mint(recipient, "ipfs://your-metadata-hash");
-
-// 方式2: 通过SimpleDemo合约
-demo.mintNFT(recipient, "ipfs://your-metadata-hash");
 ```
+Crypto Dragon #1
+参数：0x6cc3Aac8a7d769B5fe464b406849392539f22bf5,ipfs://bafkreigtxcgvvvrjh6sf22h4mfc3kd37egckxcs3xbuayovwyg4c4ylpca
+交易Hash：0x60bb035bea942fbfd194cc839ede82292f3d77fdf43657da36842491a52ca2f8
+链接：https://sepolia.etherscan.io/nft/0x08dcaa6de0ca584b8c5d810b027afe23d31c4af1/1
 
-#### 3.3 分发测试代币
+Cyber Phoenix #2
+参数：0x6cc3Aac8a7d769B5fe464b406849392539f22bf5,ipfs://bafkreiff7ddr6yq5qyc5ckt6dopnxeurgbie4hkjeljwih22kwlogplo54
+交易Hash：0x2287e7b0e19f813a7977410f9eab03c409c26d6d0823f7dcc21348f79b05a611
+链接：https://sepolia.etherscan.io/nft/0x08dcaa6de0ca584b8c5d810b027afe23d31c4af1/4
+
+Mystic Unicorn #3
+参数：0x6cc3Aac8a7d769B5fe464b406849392539f22bf5,ipfs://bafkreidatrllynxmvvvrw6yu5o74i5fddpaucrhknf2e6rzhe4icu4qemm
+交易Hash：0xa1030459f319417dc7d97ff66961ff4e54943c460623bf65339c011de1b69d2e
+链接：https://sepolia.etherscan.io/nft/0x08dcaa6de0ca584b8c5d810b027afe23d31c4af1/5
+
+
+#### 3.2 分发测试代币
 ```solidity
-// 方式1: 直接调用ExtendedERC20合约
+// 调用ExtendedERC20合约
 token.mint(user, amount);
-
-// 方式2: 通过SimpleDemo合约
-demo.mintTokens(user, amount);
 ```
+参数：0x3dd6ba106b13cb6538a9ed9fe1a51e115f9ee664,100000000000000000000
+交易Hash：0x524052eb01ce5bae721e245dc583cbc3d57da4cd1b6b56e2770122b62a1870f6
+
 
 ### 4. 测试市场功能
 
 #### 4.1 上架NFT
 ```solidity
-// 方式1: 直接调用合约
 nft.approve(marketAddress, tokenId);
 market.list(tokenId, price);
-
-// 方式2: 通过SimpleDemo合约（自动处理授权）
-demo.listNFT(tokenId, price);
 ```
+用户：0x6cc3Aac8a7d769B5fe464b406849392539f22bf5
+参数：0x9d206682e9837b02479a5010ed312045eaeacdb2,1
+交易Hash：0x1c269f293fac0c589d96396feb35a576d63cb644d13459df590f8b474a56f5b4
+
+用户：0x6cc3Aac8a7d769B5fe464b406849392539f22bf5
+参数：1,3000000000000000000
+交易Hash：0xa8234b6ef3671de108bea4b4b1178aec8e3ede18047ea4f77e73b4a680454428
+
+用户：0x6cc3Aac8a7d769B5fe464b406849392539f22bf5
+参数：0x9d206682e9837b02479a5010ed312045eaeacdb2,4
+交易Hash：0x275a7be79b25543de9fc4c3bb64699fe32b9ced1fda300e67e843e81b51f9194
+
+用户：0x6cc3Aac8a7d769B5fe464b406849392539f22bf5
+参数：4,7000000000000000000
+交易Hash：0x6645ea2bc993e77009b770133294d7f140dd4b10b5d25e50d6ae6f312d2a4fa9
 
 #### 4.2 购买NFT (传统方式)
 ```solidity
-// 方式1: 直接调用合约
 token.approve(marketAddress, price);
 market.buyNFT(listingId);
-
-// 方式2: 通过SimpleDemo合约（自动处理授权）
-demo.buyNFTTraditional(listingId);
 ```
+用户：0x3dd6ba106b13cb6538a9ed9fe1a51e115f9ee664
+参数：0x9d206682e9837b02479a5010ed312045eaeacdb2,3000000000000000000
+交易Hash：0xd2504d7f66cd5e2ffc3fe51730f995c64e9a6385e7256e21d81662b12204660a
+
+用户：0x3dd6ba106b13cb6538a9ed9fe1a51e115f9ee664
+参数：1
+交易Hash：0xacd7855f17730d303c78c79a12a947f796b6adb1d99dff842adfcb3fa6c5f07e
 
 #### 4.3 购买NFT (Hook方式)
 ```solidity
-// 方式1: 直接调用合约
 bytes memory data = abi.encode(listingId);
 token.transferWithCallback(marketAddress, price, data);
-
-// 方式2: 通过SimpleDemo合约
-demo.buyNFTWithHook(listingId);
 ```
-
-#### 4.4 查询功能
-```solidity
-// 查询用户NFT余额
-uint256 nftBalance = demo.getUserNFTBalance(userAddress);
-
-// 查询用户代币余额
-uint256 tokenBalance = demo.getUserTokenBalance(userAddress);
-
-// 查询上架信息
-(address seller, address nftAddr, uint256 tokenId, uint256 price, bool active) =
-    demo.getListingInfo(listingId);
-```
+用户：0x3dd6ba106b13cb6538a9ed9fe1a51e115f9ee664
+参数：0x9d206682e9837b02479a5010ed312045eaeacdb2,7000000000000000000,0x0000000000000000000000000000000000000000000000000000000000000002
+交易Hash：0x5512339c04a4339e11e02983e4e5ef5366cce14c4acee7349465ba7edcc70719
 
 ## 示例元数据上传到IPFS
 
@@ -151,37 +154,3 @@ NFT部署后会自动在OpenSea上显示，确保：
 2. 图片已正确上传到IPFS
 3. 合约已在主网部署并验证
 4. NFT已成功铸造
-
-## 安全注意事项
-
-1. **测试网测试**: 先在测试网充分测试所有功能
-2. **权限管理**: 确保只有授权用户可以铸造NFT
-3. **手续费设置**: 合理设置市场手续费率
-4. **代码审计**: 主网部署前进行代码审计
-5. **升级计划**: 考虑合约升级和维护计划
-
-## 故障排除
-
-### 常见错误及解决方案
-
-1. **"Counters not found"**
-   - 已修复：使用uint256计数器替代
-
-2. **"Ownable constructor error"**
-   - 已修复：添加msg.sender参数
-
-3. **"NFT transfer failed"**
-   - 检查NFT授权状态
-   - 确认NFT所有权
-
-4. **"Token transfer failed"**
-   - 检查代币余额和授权
-   - 确认合约地址正确
-
-## 联系支持
-
-如遇到问题，请检查：
-1. 合约地址是否正确
-2. 交易gas费是否足够
-3. 网络连接是否正常
-4. 钱包是否正确连接
