@@ -137,15 +137,6 @@ token.transferWithCallback(marketAddress, price, data);
 元数据: ipfs://QmYourMetadataHashHere
 ```
 
-## 合约验证
-
-部署到主网或测试网后，建议验证合约源码：
-
-1. 在区块链浏览器上找到您的合约
-2. 点击"Verify and Publish"
-3. 上传源码和构造参数
-4. 完成验证
-
 ## OpenSea集成
 
 NFT部署后会自动在OpenSea上显示，确保：
